@@ -21,13 +21,12 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
-// InstanceSpec defines the desired state ofInstance
+// InstanceSpec defines the desired state of Instance
 type InstanceSpec struct {
 	// Components is a list of components, each of which specifies a component and the number of replicas and template for Instance that match the component.
 	Components []InstanceComponent `json:"components" patchStrategy:"merge" patchMergeKey:"name"`
 
-	// MinReadySeconds is the minimum number of seconds for which a newly created Pod should be ready without any of its containers crashing, for it to be considered available.
-	// Configuration for the Instance to enable gang-scheduling via supported plugins.
+	// PodGroupPolicy configures gang-scheduling behavior for the Instance via supported plugins.
 	PodGroupPolicy *PodGroupPolicy `json:"podGroupPolicy,omitempty"`
 
 	// InstanceReadyPolicy specifies the policy for determining if the Instance is ready.
@@ -213,5 +212,3 @@ type InstanceList struct {
 type InstanceTemplate struct {
 	InstanceSpec `json:",inline"`
 }
-
-

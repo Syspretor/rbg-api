@@ -41,7 +41,7 @@ type RoleBasedGroupScalingAdapterStatus struct {
 	// Selector is a label query used to filter and identify a set of resources targeted for metrics collection.
 	Selector string `json:"selector,omitempty"`
 
-	// LastScaleTime is the last time the RoleBasedGroupScalingAdapter scaled the number of pods,
+	// LastScaleTime is the last time the RoleBasedGroupScalingAdapter scaled the number of pods.
 	LastScaleTime *metav1.Time `json:"lastScaleTime,omitempty"`
 }
 
@@ -77,5 +77,3 @@ type RoleBasedGroupScalingAdapterList struct {
 	metav1.ListMeta `json:"metadata,omitempty"`
 	Items           []RoleBasedGroupScalingAdapter `json:"items"`
 }
-
-
