@@ -67,5 +67,3 @@ type ClusterEngineRuntimeProfileList struct {
 	metav1.ListMeta `json:"metadata,omitempty"`
 	Items           []ClusterEngineRuntimeProfile `json:"items"`
 }
-
-

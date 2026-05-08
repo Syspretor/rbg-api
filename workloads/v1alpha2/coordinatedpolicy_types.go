@@ -1,5 +1,5 @@
 /*
-Copyright 2026.
+Copyright 2026 The RBG Authors.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -33,6 +33,11 @@ type CoordinatedPolicySpec struct {
 
 // CoordinatedPolicyRule defines the coordination policy rule for a set of roles.
 type CoordinatedPolicyRule struct {
+	// Name specifies the name of this policy rule.
+	// +kubebuilder:validation:MinLength=1
+	// +kubebuilder:validation:Required
+	Name string `json:"name"`
+
 	// Roles specifies the names of the roles that this policy applies to.
 	// TODO: Add validation to detect conflicts when the same role appears in multiple policies.
 	// +kubebuilder:validation:MinItems=1
@@ -94,7 +99,7 @@ type ScalingCoordinationStrategy struct {
 type ScalingProgression string
 
 const (
-	// OrderScheduledProgression scales replicas in order based on scheduled.
+	// OrderScheduledProgression scales replicas in order based on scheduling status.
 	OrderScheduledProgression ScalingProgression = "OrderScheduled"
 
 	// OrderReadyProgression scales replicas in order based on readiness.

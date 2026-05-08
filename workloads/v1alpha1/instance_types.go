@@ -26,7 +26,8 @@ type InstanceSpec struct {
 	// Components is a list of components, each of which specifies a component and the number of replicas and template for Instance that match the component.
 	Components []InstanceComponent `json:"components" patchStrategy:"merge" patchMergeKey:"name"`
 
-	// PodGroupPolicy configures gang-scheduling behavior for the Instance via supported plugins.
+	// MinReadySeconds is the minimum number of seconds for which a newly created Pod should be ready without any of its containers crashing, for it to be considered available.
+	// Configuration for the Instance to enable gang-scheduling via supported plugins.
 	PodGroupPolicy *PodGroupPolicy `json:"podGroupPolicy,omitempty"`
 
 	// InstanceReadyPolicy specifies the policy for determining if the Instance is ready.
@@ -88,7 +89,7 @@ type InstanceComponent struct {
 	Template corev1.PodTemplateSpec `json:"template"`
 }
 
-// InstanceStatus defines the observed state ofInstance
+// InstanceStatus defines the observed state of Instance
 type InstanceStatus struct {
 	// ObservedGeneration is the most recent generation observed for this Instance. It corresponds to the
 	// Instance's generation, which is updated on mutation by the API Server.
@@ -119,7 +120,7 @@ type ComponentStatus struct {
 	// Name is the type name of the component.
 	Name string `json:"name"`
 
-	// Size is the number of Pod for Instance that match the component.
+	// Replicas is the number of Pod for Instance that match the component.
 	Replicas int32 `json:"replicas"`
 
 	// ReadyReplicas is the number of ready Pod for Instance that match the component.
@@ -202,7 +203,7 @@ type Instance struct {
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
 // +kubebuilder:object:root=true
 
-// InstanceList contains a list ofInstance
+// InstanceList contains a list of Instance
 type InstanceList struct {
 	metav1.TypeMeta `json:",inline"`
 	metav1.ListMeta `json:"metadata,omitempty"`

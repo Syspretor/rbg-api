@@ -80,5 +80,3 @@ type RoleBasedGroupSetList struct {
 	metav1.ListMeta `json:"metadata,omitempty"`
 	Items           []RoleBasedGroupSet `json:"items"`
 }
-
-
